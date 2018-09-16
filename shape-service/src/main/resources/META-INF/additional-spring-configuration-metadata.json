@@ -1,0 +1,12 @@
+{"properties": [
+  {
+    "name": "area-service.ribbon.listOfServers",
+    "type": "java.lang.String",
+    "description": "A description for 'area-service.ribbon.listOfServers'"
+  },
+  {
+    "name": "perimeter-service.ribbon.listOfServers",
+    "type": "java.lang.String",
+    "description": "A description for 'perimeter-service.ribbon.listOfServers'"
+  }
+]}

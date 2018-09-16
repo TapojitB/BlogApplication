@@ -19,6 +19,6 @@ import com.evergreenprogrammers.microservices.shapeservice.bo.Area;
 public interface AreaServiceProxy {
 
 	@GetMapping("/area/shapeType/{shapeType}")
-	public Area getArea(@PathVariable String shapeType);
+	public Area getArea(@PathVariable("shapeType") String shapeType);
 
 }

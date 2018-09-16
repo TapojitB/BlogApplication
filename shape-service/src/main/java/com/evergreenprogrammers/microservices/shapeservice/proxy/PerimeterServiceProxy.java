@@ -19,6 +19,6 @@ import com.evergreenprogrammers.microservices.shapeservice.bo.Perimeter;
 public interface PerimeterServiceProxy {
 
 	@GetMapping("/perimeter/shapeType/{shapeType}")
-	public Perimeter getPerimeter(@PathVariable String shapeType);
+	public Perimeter getPerimeter(@PathVariable("shapeType") String shapeType);
 
 }
