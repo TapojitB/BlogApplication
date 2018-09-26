@@ -3,6 +3,8 @@
  */
 package com.evergreenprogrammers.microservices.perimeterservice.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
@@ -40,12 +42,15 @@ public class PerimeterServiceController {
 	@Value("${triangle.sidec}")
 	private double sideC;
 
+	private Logger logger = LoggerFactory.getLogger(PerimeterServiceController.class);
+
 	@GetMapping("/perimeter/shapeType/{shapeType}")
 	public Perimeter getPerimeter(@PathVariable String shapeType) {
 		PerimeterCalculator perimeterCalculator = getPerimeterCalculator(shapeType);
-		double area = perimeterCalculator.calculatePerimeter();
+		double perimeter = perimeterCalculator.calculatePerimeter();
 		int portNo = getServerPort();
-		return new Perimeter(area, portNo);
+		logger.info("PerimeterServiceController.getPerimeter.perimeter---> {}" + perimeter);
+		return new Perimeter(perimeter, portNo);
 	}
 
 	private int getServerPort() {

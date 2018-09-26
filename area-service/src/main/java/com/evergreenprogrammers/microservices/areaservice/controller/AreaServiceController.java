@@ -3,6 +3,9 @@
  */
 package com.evergreenprogrammers.microservices.areaservice.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
@@ -40,12 +43,15 @@ public class AreaServiceController {
 	private double sideB;
 	@Value("${triangle.sidec}")
 	private double sideC;
+	
+	private Logger logger = LoggerFactory.getLogger(AreaServiceController.class);
 
 	@GetMapping("/area/shapeType/{shapeType}")
 	public Area getArea(@PathVariable String shapeType) {
 		AreaCalculator areaCalculator = getAreaCalculator(shapeType);
 		double area = areaCalculator.calculateArea();
 		int portNo = getServerPort();
+		logger.info("AreaServiceController.getArea.area---> {}" + area);
 		return new Area(area, portNo);
 	}
 

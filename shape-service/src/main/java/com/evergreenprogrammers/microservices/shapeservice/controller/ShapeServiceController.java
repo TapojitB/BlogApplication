@@ -6,6 +6,8 @@ package com.evergreenprogrammers.microservices.shapeservice.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,11 +32,14 @@ public class ShapeServiceController {
 
 	@Autowired
 	private PerimeterServiceProxy perimeterFeignClient;
+	
+	private Logger logger = LoggerFactory.getLogger(ShapeServiceController.class);
 
 	@GetMapping("/shapeDetails/shapeType/{shapeType}")
 	public Shape getShapeDetails(@PathVariable String shapeType) {
 		Area area = invokeAreaService(shapeType);
 		Perimeter perimeter = invokePerimeterService(shapeType);
+		logger.info("ShapeServiceController.getShapeDetails---> {}");
 		return new Shape(shapeType, area, perimeter);
 	}
 
@@ -64,6 +69,7 @@ public class ShapeServiceController {
 	public Shape getShapeDetailsFeign(@PathVariable String shapeType) {
 		Area area = invokeAreaServiceFeign(shapeType);
 		Perimeter perimeter = invokePerimeterServiceFeign(shapeType);
+		logger.info("ShapeServiceController.getShapeDetailsFeign---> {}");
 		return new Shape(shapeType, area, perimeter);
 	}
 
