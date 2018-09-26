@@ -7,7 +7,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
 @EnableFeignClients(basePackages="com.evergreenprogrammers.microservices.shapeservice.proxy")
-@EnableDiscoveryClient
+@EnableDiscoveryClient(autoRegister=true)
 public class ShapeServiceApplication {
 
 	public static void main(String[] args) {
